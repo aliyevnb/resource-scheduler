@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 import os
+import awsenv
 
 import aws_cdk as cdk
 
 from resource_scheduler.resource_scheduler_stack import ResourceSchedulerStack
 
+account = awsenv.setAccount()
+region = awsenv.setRegion()
 
 app = cdk.App()
 ResourceSchedulerStack(app, "ResourceSchedulerStack",
@@ -21,6 +24,7 @@ ResourceSchedulerStack(app, "ResourceSchedulerStack",
     # want to deploy the stack to. */
 
     #env=cdk.Environment(account='123456789012', region='us-east-1'),
+    env=cdk.Environment(account=account, region=region),
 
     # For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html
     )
