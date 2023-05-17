@@ -21,5 +21,8 @@ def setStart():
 def setStop():
     return cfg.get("DEFAULTS", "stop")
 
-def setTZ():
-    return cfg.get("DEFAULTS", "tz")
+def setSg():
+    return cfg.get("DEFAULTS", "sg_name")
+
+def setRole():
+    return cfg.get("DEFAULTS", "role_name")

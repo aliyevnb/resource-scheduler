@@ -18,7 +18,7 @@ class ResourceSchedulerStack(Stack):
         
         resourceSchedulerRole=_iam.Role(self,
             "rs-lambda-execution-role",
-            role_name="rs_good_robot_persona",
+            role_name=awsenv.setRole(),
             assumed_by=_iam.ServicePrincipal("lambda.amazonaws.com")
         )
 
@@ -54,7 +54,7 @@ class ResourceSchedulerStack(Stack):
 
         functionSg=_ec2.SecurityGroup.from_lookup_by_name(self,
             "rs-lambda-sg", 
-            security_group_name="rs-security-group", 
+            security_group_name=awsenv.setSg(), 
             vpc=functionVpc)
         
         stopEc2Fleet=_lambda.Function(
