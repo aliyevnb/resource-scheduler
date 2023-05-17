@@ -67,6 +67,7 @@ class ResourceSchedulerStack(Stack):
             function_name="stop_fleet",
             role=resourceSchedulerRole,
             vpc=functionVpc,
+            timeout=Duration.seconds(30),
             vpc_subnets=functionSubnet,
             security_groups=[functionSg]
         )
@@ -81,6 +82,7 @@ class ResourceSchedulerStack(Stack):
             function_name="start_fleet",
             role=resourceSchedulerRole,
             vpc=functionVpc,
+            timeout=Duration.seconds(30),
             vpc_subnets=functionSubnet,
             security_groups=[functionSg]           
         )
@@ -109,3 +111,5 @@ class ResourceSchedulerStack(Stack):
                 week_day="1-5",
             )
         )
+
+        stopFleet.add_target(_targets.LambdaFunction(stopEc2Fleet))
